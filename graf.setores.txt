@@ -1,0 +1,14 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+from google.colab import files
+
+carregado = files.upload()
+arquivo = next(iter(carregado))
+
+df = pd.read_excel(arquivo)
+dados = df.groupby(df['name'])['hours_viewed_first_28_days'].sum()
+
+plt.figure(figsize=(10, 6))
+plt.pie(dados, labels=dados.index, autopct='%1.1f%%', startangle=140)
+plt.title('Top Filmes mais assistidos nos primeiros 28 dias de lançamento')
+plt.show()

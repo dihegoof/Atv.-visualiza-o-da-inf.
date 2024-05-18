@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import datetime
+from google.colab import files
+
+carregado = files.upload()
+arquivo = next(iter(carregado))
+df = pd.read_excel(arquivo)
+
+nomes = df['name']
+horas_Assistidas = df['hours_viewed_first_28_days']
+
+plt.figure(figsize=(10, 6))
+plt.plot(nomes, horas_Assistidas, marker='o', linestyle='-')
+plt.title('Top Filmes mais assistidos nos primeiros 28 dias de lançamento')
+plt.xlabel('Nome')
+plt.ylabel('Horas Assistidas')
+plt.grid(True)
+
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
